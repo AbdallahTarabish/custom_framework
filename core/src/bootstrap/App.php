@@ -3,6 +3,7 @@
 namespace core\bootstrap;
 
 use core\Exception\Whoops;
+use core\File\File;
 use core\Http\Request;
 use core\Http\Server;
 use core\Session\Session;
@@ -25,25 +26,39 @@ class App
 
     public static function run()
     {
+        // for handle the error
         Whoops::handle();
-//        Session::start();
-//        Session::set("name" , "ahmed");
-//        Session::set("age" , "12");
-//        Session::remove("name");
-        // Session::has("name");
-        // print_r(Session::all());
-        //Session::destroy();
-//        echo "<pre>";
-//        print_r(Server::all());
-//        echo "</pre>";
-        //   echo Session::flash("name");
-//      echo  Server::has("DOCUMENT_ROOT");
-//       Server::get("REDIRECT_MYSQL_HOME");
+
+        // start the session
+        Session::start();
+
+        //handle the request variable
         Request::handle();
-//       echo Request::get("id");
-        print_r(Request::all());
-//          Request::setUrl();
+        // require all file in route
+        File::require_directory("route");
 
 
     }
 }
+
+//        Session::start();
+//        Session::set("name" , "ahmed");
+//        Session::set("age" , "12");
+//        Session::remove("name");
+// Session::has("name");
+// print_r(Session::all());
+//Session::destroy();
+//        echo "<pre>";
+//        print_r(Server::all());
+//        echo "</pre>";
+//   echo Session::flash("name");
+//      echo  Server::has("DOCUMENT_ROOT");
+//       Server::get("REDIRECT_MYSQL_HOME");
+//        Request::handle();
+//       echo Request::get("id");
+//        print_r(Request::all());
+//          Request::setUrl();
+//        echo File::path("/route/web.php/");
+//        echo File::exist("route/web.php");
+//        echo File::require_file("route/web.php");
+//        print_r(File::require_directory("route"));
