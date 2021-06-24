@@ -40,7 +40,8 @@ class App
 //      echo  Server::has("DOCUMENT_ROOT");
 //       Server::get("REDIRECT_MYSQL_HOME");
         Request::handle();
-       echo Request::method();
+//       echo Request::get("id");
+        print_r(Request::all());
 //          Request::setUrl();
 
 

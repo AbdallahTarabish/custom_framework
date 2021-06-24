@@ -116,6 +116,7 @@ class Request
     {
         return self::$url;
     }
+
     /**
      * get full Url
      *
@@ -139,14 +140,108 @@ class Request
     }
 
     /**
-     * get server method
+     * get request method
      *
      */
 
-    public static function method(){
+    public static function method()
+    {
         return Server::get("REQUEST_METHOD");
 
     }
+
+    /**
+     * request has data
+     *
+     * @param string $key
+     * @param array $type
+     * @return bool
+     */
+
+    public static function has($key, $type)
+    {
+        return array_key_exists($key, $type);
+    }
+
+    /**
+     * request has data
+     *
+     * @param  $key
+     * @param   $type
+     * @return bool
+     */
+
+    public static function value($key, $type)
+    {
+        $type = isset($type) ? $type : $_REQUEST;
+        return self::has($key, $type) ? $type[$key] : null;
+    }
+
+
+    /**
+     * get data from get request
+     *
+     * @param $key
+     * @return string
+     */
+
+    public static function get($key)
+    {
+        return self::value($key, $_GET);
+    }
+
+    /**
+     * get data from post request
+     *
+     * @param $key
+     * @return string
+     */
+
+    public static function post($key)
+    {
+        return self::value($key, $_POST);
+    }
+
+    /**
+     * set data value for a given key
+     *
+     * @param $key
+     * @param $value
+     * @return string
+     */
+
+    public static function set($key, $value)
+    {
+        $_REQUEST[$key] = $value;
+        $_POST[$key] = $value;
+        $_GET[$key] = $value;
+
+        return $value;
+    }
+
+    /**
+     * return redirect .....
+     *
+     * @return string
+     */
+
+    public static function redirect()
+    {
+
+        return Server::get("HTTP_REFEREE");
+    }
+
+    /**
+     * return request all .....
+     *
+     * @return string
+     */
+
+    public static function all()
+    {
+        return $_REQUEST;
+    }
+
 
     private static function getScriptName()
     {
