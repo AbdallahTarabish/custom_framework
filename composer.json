@@ -1,0 +1,23 @@
+{
+  "name": "lite/framework",
+  "description": "php lite framework",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "AbdallahTarabish",
+      "email": "dev.abdallah.tarabish@gmail.com"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": "7.4.16",
+    "filp/whoops": "^2.13"
+  },
+    "autoload": {
+      "psr-4": {
+          "App\\": "app/" ,
+          "core\\": "core/src/"
+      }
+    }
+}
