@@ -6,6 +6,7 @@ use core\Exception\Whoops;
 use core\File\File;
 use core\Http\Request;
 use core\Http\Server;
+use core\Router\Route;
 use core\Session\Session;
 
 class App
@@ -36,7 +37,10 @@ class App
         Request::handle();
         // require all file in route
         File::require_directory("route");
-
+        // get all route
+        echo "<pre>";
+        print_r(Route::all());
+        echo "</pre>";
 
     }
 }
